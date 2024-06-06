@@ -1,0 +1,49 @@
+
+
+//User function Template for Java
+
+
+
+class Solution {
+    int count(int[] arr, int n, int x) {
+        // code here
+        int first=getCeil(arr,n,x);
+        int last=getFloor(arr,n,x);
+        if(first==-1 || arr[first]!=x){
+            int ans=0;
+            return ans;
+        }
+        int ans=last-first+1;
+        return ans;
+    }
+    int getCeil(int[] arr,int n,int x){
+        int first=-1;
+        int low=0,high=n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>=x){
+                first=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return first;
+    }
+    int getFloor(int[] arr,int n,int x){
+        int last=-1;
+        int low=0,high=n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]<=x){
+                last=mid;
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return last;
+    }
+}

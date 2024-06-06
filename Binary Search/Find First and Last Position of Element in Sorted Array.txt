@@ -1,0 +1,55 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] ans=new int[2];
+        int n=nums.length;
+        int first=getLower(nums,target);
+        if(first==-1 || nums[first]!=target){
+            ans[0]=-1;
+            ans[1]=-1;
+            return ans;
+        }
+        else{
+            ans[0]=first;
+        }
+        
+        int last=getUpper(nums,target);
+            ans[1]=last-1;
+    
+        return ans;
+    }
+    public static int getLower(int[] nums,int target){
+       
+        int n=nums.length;
+         int first=-1;
+        int low=0,high=n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]>=target){
+                first=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+            
+        }
+        return first;
+    }
+    public static int getUpper(int[] nums,int target){
+        int n=nums.length;
+        int last=n;
+        int left=0,right=n-1;
+        while(left<=right){
+            int m=(left+right)/2;
+            if(nums[m]>target){
+                last=m;
+                right=m-1;
+            }
+            else{
+                 left=m+1;
+            }
+        }
+        return last;
+    }
+}
+    
