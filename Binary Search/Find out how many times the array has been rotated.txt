@@ -1,0 +1,29 @@
+
+
+// User function Template for Java
+
+class Solution {
+    int findKRotation(int nums[], int n) {
+        // code here
+        int low=0,high=nums.length-1,mini=Integer.MAX_VALUE;
+        int ind=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[low]<=nums[mid]){
+                mini=Math.min(mini,nums[low]);
+                if(nums[low]<=mini){
+                    ind=low;
+                }
+                low=mid+1;
+            }
+            else{
+                mini=Math.min(mini,nums[mid]);
+                if(nums[mid]<=mini){
+                    ind=mid;
+                }
+                high=mid-1;
+            }
+        }
+        return ind;
+    }
+}
