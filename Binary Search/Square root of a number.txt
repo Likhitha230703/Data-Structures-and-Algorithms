@@ -1,0 +1,20 @@
+class Solution
+{
+     long floorSqrt(long x)
+	 {
+		int low=1,high=(int)x,ans=1;
+		while(low<=high){
+		    long mid=(low+high)/2;
+		    long val=mid*mid;
+		    if(val<=x){
+		      //  ans=mid;
+		        low=(int)mid+1;
+		    }
+		    else{
+		        high=(int)mid-1;
+		    }
+		}
+		return high;
+		
+	 }
+}
