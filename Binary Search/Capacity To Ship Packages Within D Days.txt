@@ -1,0 +1,38 @@
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+        int low=1,high=sum(weights),ans=0;
+		while(low<=high){
+		    int mid=(low+high)/2;
+		    int d=reqdays(weights,mid,days);
+		    if(d<=days){
+		        ans=mid;
+		        high=mid-1;
+		    }
+		    else{
+		        low=mid+1;
+		    }
+		}
+		return ans;
+	}
+	public static int reqdays(int[] arr,int mid,int d){
+	    int days=1,sum=0;
+	    for(int i=0;i<arr.length;i++){
+            if(arr[i]>mid) {
+                return d+1;
+            }
+	        sum+=arr[i];
+	        if(sum>mid){
+	            days++;
+	            sum=arr[i];
+	        }
+	    }
+	    return days;
+	}
+    public static int sum(int[] weight){
+        int sum=0;
+        for(int i=0;i<weight.length;i++){
+            sum+=weight[i];
+        }
+        return sum;
+    }
+}

@@ -1,0 +1,32 @@
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int low=1,high=max(nums);
+        while(low<=high){
+            int mid=(low+high)/2;
+            int ans=check(nums,threshold,mid);
+            if(ans<=threshold){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+    public int max(int[] nums){
+        int maxi=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>maxi){
+                maxi=nums[i];
+            }
+        }
+        return maxi;
+    }
+    public int check(int[] nums,int threshold,int ele){
+        int sum=0;
+        for(int i=0;i<nums.length;i++){
+            sum += Math.ceil((double)(nums[i]) / (double)(ele));
+        }
+        return sum;
+    }
+}
