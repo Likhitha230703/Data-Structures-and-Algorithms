@@ -1,0 +1,41 @@
+import java.util.*;
+public class Solution {
+    public static int findPages(ArrayList<Integer> arr, int n, int m) {
+        // Write your code here.
+        if(n<m){
+            return -1;
+        }
+        int max=Integer.MIN_VALUE,sum=0;
+        for(int i=0;i<arr.size();i++){
+            if(arr.get(i)>max){
+                max=arr.get(i);
+            }
+            sum+=arr.get(i);
+        }
+        int low=max,high=sum;
+        int sol=0;
+        while(low<=high){
+            int mid=(low+high)/2;
+            int ans=findmaxpages(arr,m,mid);
+            if(ans<=m){
+                sol=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+    public static int findmaxpages(ArrayList<Integer> arr, int m,int mid){
+        int pages=0,stud=1;
+        for (int i = 0; i < arr.size(); i++) {
+        pages += arr.get(i);
+        if (pages > mid) {
+            pages = arr.get(i);
+            stud++;
+        }
+        }
+        return stud;
+    }
+}
